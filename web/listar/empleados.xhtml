@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <f:view>
+
+
+                <h:form>
+                    <h1><p:outputLabel value="Listado de empleados"/></h1>
+                    <p:dataTable value="#{beanEmpleado.empelados}" var="item" >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id Empleado"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpleado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tipo de Identificación"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipodeidentificacion.nombreTipoIdentificacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Identificación"/>
+                            </f:facet>
+                            <h:outputText value="#{item.identificacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cargo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCargo.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Usuario de Sesion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLogin.user}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Permisos"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLogin.permiso}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="E-mail"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLogin.email}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

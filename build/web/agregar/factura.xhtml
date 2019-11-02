@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <title>Buscar Cliente</title>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <f:view>
+                <h:form id="buscar">
+                    <table border="0">
+                        <tr >
+                            <td width="50%">
+                                <h2><p:outputLabel value="Venta"/></h2>
+                                <h5><p:outputLabel value="Nº: 00000001"/></h5>
+                                <p:panelGrid columns="2" >
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel value="Tipo de Identificación:"  />
+                                        <p:selectOneMenu value="#{beanEnvio.tipo_id}">
+                                            <f:selectItems value="#{beanTipoID.tiposID}" />
+                                        </p:selectOneMenu>
+                                        <p:outputLabel value="Identificación:"  />
+                                        <p:inputText  id="identificación" value="#{beanEnvio.id}" title="identificación" />
+                                        <p:commandButton actionListener="#{beanEnvio.selectCliente()}" value="Buscar" update="buscar"/>
+                                    </h:panelGrid>
+
+
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel value="Nombre:"  />
+                                        <p:inputText  id="nombre" value="#{beanEnvio.nombre}" title="Nombre" />
+                                        <p:outputLabel value="Telefono:"  />
+                                        <p:inputText  id="telefono" value="#{beanEnvio.telefono}" title="Telefono" />
+                                        <p:outputLabel value="Direccion:"  />
+                                        <p:inputText id="direccion" value="#{beanEnvio.direccion}" title="Direccion" />
+                                        <p:outputLabel value="Ciudad:" />
+                                        <p:selectOneMenu id="idCiudad" value="#{beanEnvio.ciudad}" >
+                                            <f:selectItems value="#{beanCiudad.ciudades}"/>
+                                        </p:selectOneMenu>
+                                    </h:panelGrid>
+                                </p:panelGrid>
+                            </td> 
+                            <td width="50%">
+
+                            </td>
+                        </tr><tr>
+                            <td colspan="2" align="center">
+                                <h3><p:outputLabel value="Listado de Productos"/></h3>
+                                <p:dataTable value="" var="item">
+                                    <p:column >
+                                        <f:facet name="header" >
+                                            <h:outputText value="ID"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nombre"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Codigo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Proveedor"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Descripción"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Cantidad Actual"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Cantidad Minina"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column><p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Precio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item}"/>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </td>
+                        </tr>
+                    </table>
+                    <p:growl id="acceptedMessage" autoUpdate="true" life="6000"></p:growl>
+                    <div align="center">
+                        <p:panelGrid columns="2">
+                            <p:commandButton actionListener="#{beanEnvio.insertar()}" value="Agregar Producto" />
+                            <p:commandButton actionListener="#{beanEnvio.insertar()}" value="Eliminar Producto" />
+                        </p:panelGrid>
+                    </div><div align="right">
+                        <p:commandButton actionListener="#{beanEnvio.insertar()}" value="Realizar Envio" />
+                    </div>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

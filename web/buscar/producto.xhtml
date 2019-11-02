@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <title>Buscar Cliente</title>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <f:view>
+                <h:form id="buscar">
+                    <h1><p:outputLabel value="Buscar Producto"/></h1>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Codigo de Barra"  />
+                        <p:inputText  id="nombre" value="#{beanCliente.nombre}" title="Nombre" />
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{beanCliente.select()}" value="Buscar"  />
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Nombre"  />
+                        <p:outputLabel  id="identificación" value="#{beanCliente.id}" title="identificación" />
+                        <p:outputLabel value="Telefono"  />
+                        <p:outputLabel  id="telefono" value="#{beanCliente.telefono}" title="Telefono" />
+                        <p:outputLabel value="Proveedor"  />
+                        <p:outputLabel id="idCiudad" value="#{beanCliente.ciudad}"  />
+                        <p:outputLabel value="Cantidad Minina"  />
+                        <p:outputLabel id="user_login" value="#{beanCliente.user_login}" title="user_login" />
+                        <p:outputLabel value="Precio" />
+                        <p:outputLabel id="pass" value="#{beanCliente.pass}" title="pass" />
+                    </h:panelGrid>
+                    
+                    <p:growl id="acceptedMessage" autoUpdate="true" life="6000"></p:growl>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

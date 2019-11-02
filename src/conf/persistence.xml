@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="webcargaPU" transaction-type="JTA">
+    <jta-data-source>Carga System</jta-data-source>
+    <class>logic.Camion</class>
+    <class>logic.Cargo</class>
+    <class>logic.Ciudad</class>
+    <class>logic.Cliente</class>
+    <class>logic.ConexionCiudad</class>
+    <class>logic.Empleado</class>
+    <class>logic.Envio</class>
+    <class>logic.Estado</class>
+    <class>logic.EstadosEnvio</class>
+    <class>logic.Login</class>
+    <class>logic.Solicitud</class>
+    <class>logic.Tipoidentificacion</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>

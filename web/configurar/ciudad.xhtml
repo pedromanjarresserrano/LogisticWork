@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <title>Agregar Ciudad</title>
+        <script type="text/javascript">
+            function limpiarForm()
+            {
+                document.getElementById("Agregar_Ciudad").reset();
+            }
+        </script>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <f:view>
+                <h:form id="Agregar_Ciudad">
+                    <h1><p:outputLabel value="Agregar Ciudad"/></h1>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Nombre:" />
+                        <p:inputText  style="text-transform:uppercase;" id="nombre" value="#{beanCiudad.nombre}" title="Nombre" validatorMessage="Value does not match pattern."/> 
+                    </h:panelGrid>
+                    <p:growl id="acceptedMessage" autoUpdate="true" life="6000"></p:growl>
+                    <p:commandButton actionListener="#{beanCiudad.insertar()}" value="Agregar" oncomplete="limpiarForm()" update="Agregar_Ciudad"/>
+                    <div align="center" style="width: 400px;"> 
+                        <h:form>
+                            <h1><h:outputText value="Listado de Ciudades"/></h1>
+                            <p:dataTable value="#{beanCiudad.ciudades}" var="item">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

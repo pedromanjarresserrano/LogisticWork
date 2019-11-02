@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <link href="../../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <title>Crear Envio</title>
+        <script>
+            function limpiarForm() {
+                document.getElementById("envio").reset();
+            }
+
+        </script>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="envio" >
+
+                <h1><p:outputLabel value="Crear Envio" /></h1>
+                <table border="0" >
+                    <tr>
+                        <td width="50%" >
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Numero del Solicitud:" />
+                                <p:inputText id="idEnvio" value="#{beanSolicitud.id_solicitud}" title="Numero del Envio" />
+                            </h:panelGrid>
+                            <p:commandButton actionListener="#{beanSolicitud.select()}" value="Buscar" />
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Tipo de Identificación:"  />
+                                <p:outputLabel value="#{beanSolicitud.tipo_id}" />
+                                <p:outputLabel value="Identificación:"  />
+                                <p:outputLabel  id="identificación" value="#{beanSolicitud.id}" title="identificación" />
+
+                                <p:outputLabel value="Nombre:"  />
+                                <p:outputLabel  id="nombre" value="#{beanSolicitud.nombre}" title="Nombre" />
+                                <p:outputLabel value="Telefono:"  />
+                                <p:outputLabel  id="telefono" value="#{beanSolicitud.telefono}" title="Telefono" />
+                                <p:outputLabel value="Direccion:"  />
+                                <p:outputLabel id="direccion" value="#{beanSolicitud.direccion}" title="Direccion" />
+                                <p:outputLabel value="Ciudad:" />
+                                <p:outputLabel id="idCiudad" value="#{beanSolicitud.ciudad}" />
+                            </h:panelGrid>
+                        </td> 
+                        <td width="50%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Fecha de Recogida:"  />
+                                <p:calendar id="restricted" readonly="true" value="#{beanSolicitud.recogida}" pattern="dd/MM/yyyy"  locale="co"  />
+                                <p:outputLabel value="Ciudad Origen:"  />
+                                <p:outputLabel id="Ciudadorigen" value="#{beanSolicitud.ciudadorigen}"  />
+                                <p:outputLabel value="Ciudad Destino:"  />
+                                <p:outputLabel id="Ciudaddestino" value="#{beanSolicitud.ciudaddestino}"  />
+                                <p:outputLabel value="Peso de la mercancia: " />
+                                <p:outputLabel id="pesomercancia" value="#{beanSolicitud.pesomercancia}" title="peso mercancia" />
+                                <p:outputLabel value="Volumen de la mercancia: "  />
+                                <p:outputLabel id="volumenmercancia" value="#{beanSolicitud.volumenmercancia}" title="volumen mercancia" />
+                            </h:panelGrid>
+
+                        </td>
+                    </tr><tr>
+                        <td colspan="2" align="center">
+                            <h:panelGrid >
+                                <p:outputLabel value="Camion:" />
+                                <p:dataTable value="#{beanCamion.camionesDisponibles}" var="item"  selection="#{beanSolicitud.camion}" selectionMode="single" rowKey="#{item.idCamion}"> 
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Placa"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.placa}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Modelo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.modelo}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Capacidad en Peso"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.pesoCapacidad}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Capacidad en Volumen"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.volumenCapacidad}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Ciudad Actual"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idCiudadActual}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Empleado"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idEmpleado}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+
+                        </td>
+                    </tr>
+                </table>
+                <div align="center">
+                    <p:growl id="acceptedMessage" autoUpdate="true" life="6000"></p:growl>
+
+                    <p:commandButton actionListener="#{beanEnvio.insertar()}" value="Realizar Envio" />
+                </div>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

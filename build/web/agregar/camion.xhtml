@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript">
+            function limpiarForm()
+            {
+                document.getElementById("agregar").reset();
+            }
+        </script>
+        <title>Agregar  Camion</title>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <f:view>
+                <h:form id="agregar">
+                    <h1><p:outputLabel value="Agregar Proveedor"/></h1>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Tipo de Identificación:"  />
+                        <p:selectOneMenu value="#{beanCliente.tipo_id}">
+                            <f:selectItems value="#{beanTipoID.tiposID}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Identificación:"  />
+                        <p:inputText  id="identificación" value="#{beanCliente.id}" title="identificación" />
+                        <p:outputLabel value="Nombre"  />
+                        <p:inputText id="modelo" value="#{beanCamion.modelo}" title="Modelo" />
+                        <p:outputLabel value="Telefono"  />
+                        <p:inputText id="pesoCapacidad" value="#{beanCamion.peso_capacidad}" title="PesoCapacidad" />
+                        <p:outputLabel value="Dirección"  />
+                        <p:inputText id="volumenCapacidad" value="#{beanCamion.volumen_capacidad}" title="VolumenCapacidad" />
+                        <p:outputLabel value="Fecha de Convenio"  />
+                        <p:calendar id="effect"   value="#{beanCamion.ciudad}" title="IdCiudadActual" />
+                    </h:panelGrid>
+                    <p:growl id="acceptedMessage" autoUpdate="true" life="6000"></p:growl>
+                    <p:commandButton actionListener="#{beanCamion.insetar()}" value="Agregar"/>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

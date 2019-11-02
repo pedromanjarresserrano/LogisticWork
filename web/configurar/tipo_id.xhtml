@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript">
+            function limpiarForm()
+            {
+                document.getElementById("agregar").reset();
+            }
+        </script>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <f:view>
+                <h:form id="agregar">
+                    <h1><p:outputLabel value="Agregar tipo de identificación"/></h1>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Tipo de dentificación" for="nombreTipoIdentificacion" />
+                        <p:inputText style="text-transform:uppercase;" id="nombreTipoIdentificacion" value="#{beanTipoID.nombre}" title="nombreTipoIdentificacion" />
+                    </h:panelGrid>
+                    <p:growl id="acceptedMessage" autoUpdate="true" life="2000"/>
+                    <p:commandButton actionListener="#{beanTipoID.insertear()}" value="Agregar" oncomplete="limpiarForm()" update="tablelist" />
+                    <h1><p:outputLabel value="Lista de Tipos de Identificaciones"/></h1>
+                    <div style="width: 400px">
+                        <p:dataTable id="tablelist" value="#{beanTipoID.tiposID}" var="item" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo Identificacion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombreTipoIdentificacion}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

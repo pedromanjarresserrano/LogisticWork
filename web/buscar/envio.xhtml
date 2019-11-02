@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/locate-co.js" type="text/javascript"></script>
+        <script>
+            function limpiarForm() {
+                document.getElementById("rutas").reset();
+            }
+
+        </script>
+        <title>Buscar Envio</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="envio">
+
+                <h1 ><p:outputLabel value="Buscar Envio"/></h1>
+                <table border="0">
+                    <tr >
+                        <td width="50%">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Numero de Envio:" />
+                                <p:inputText id="idEnvio" value="#{beanEnvio.id_envio_select}" title="NumerodelEnvio" />
+                            </h:panelGrid>
+                            <p:commandButton actionListener="#{beanEnvio.select()}" value="Buscar" update="envio" />
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Tipo de Identificación:"  />
+                                <p:outputLabel value="#{beanEnvio.tipo_id}" />
+                                <p:outputLabel value="Identificación:"  />
+                                <p:outputLabel  id="identificación" value="#{beanEnvio.id}" title="identificación" />
+                                <p:outputLabel value="Nombre:"/>
+                                <p:outputLabel  id="nombre" value="#{beanEnvio.nombre}" title="Nombre" />
+                                <p:outputLabel value="Telefono:"  />
+                                <p:outputLabel  id="telefono" value="#{beanEnvio.telefono}" title="Telefono" />
+                                <p:outputLabel value="Direccion:"/>
+                                <p:outputLabel id="direccion" value="#{beanEnvio.direccion}" title="Direccion" />
+                                <p:outputLabel value="Ciudad:" />
+                                <p:outputLabel id="idCiudad" value="#{beanEnvio.ciudad}" title="IdCiudad" />
+                            </h:panelGrid>
+                        </td> 
+                        <td width="50%"><h:panelGrid columns="2">
+                                <p:outputLabel value="Fecha de Recogida:" />
+                                <p:calendar id="effect1" effect="blod" readonly="true" value="#{beanEnvio.recogida}" pattern="dd/MM/yyyy"  locale="co"  />
+                                <p:outputLabel value="Fecha de Entrega:"/>
+                                <p:calendar id="effect" effect="blod" readonly="true" value="#{beanEnvio.entregado}" pattern="dd/MM/yyyy"  locale="co"  />
+                                <p:outputLabel value="Ciudad Origen:"  />
+                                <p:outputLabel id="Ciudadorigen" value="#{beanEnvio.ciudadorigen}" title="Ciudadorigen" />
+                                <p:outputLabel value="Ciudad Destino:"  />
+                                <p:outputLabel id="Ciudaddestino" value="#{beanEnvio.ciudaddestino}" title="Ciudaddestino" />
+                                <p:outputLabel value="Peso de la mercancia: " />
+                                <p:outputLabel id="pesomercancia" value="#{beanEnvio.pesomercancia}" title="pesomercancia" />
+                                <p:outputLabel value="Volumen de la mercancia: "  />
+                                <p:outputLabel id="volumenmercancia" value="#{beanEnvio.volumenmercancia}" title="volumenmercancia" />
+                            </h:panelGrid>
+                        </td>
+                    </tr><tr>
+                        <td colspan="2" align="center">
+                            <h:panelGrid >
+                                <p:outputLabel value="Camion:" />
+                                <p:dataTable value="#{beanEnvio.camion}" var="item"   rowKey="#{item.idCamion}"> 
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Placa"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.placa}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Modelo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.modelo}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Capacidad en Peso"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.pesoCapacidad}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Capacidad en Volumen"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.volumenCapacidad}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Ciudad Actual"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idCiudadActual}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Empleado"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idEmpleado}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </f:view>   
+    </h:body>
+</html>
+

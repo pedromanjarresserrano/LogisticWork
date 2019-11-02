@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+        <link href="../js/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="../js/jquery-ui/jquery-ui.structure.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../js/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/locate-co.js" type="text/javascript"></script>
+        <title>Reporte Meses</title>
+        <script>
+            function limpiarForm() {
+                document.getElementById("meses").reset();
+            }
+
+        </script>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="meses">
+                <div id="header" align="center" >   
+                    <h2><p:outputLabel value="Reporte de envios por Mes (Mayor a menor)" /></h2>
+                    <div align="center">  
+                        <p:outputLabel value="Rango de fechas" />
+                        <h:panelGrid columns="1" > 
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Fecha de Inicio" />
+                                <p:calendar id="effect" value="#{beanReport.fecha_incio}" label="Fecha de Inicio" pattern="dd/MM/yyyy"  locale="co" />
+                                <p:outputLabel value="Fecha de Fin" />
+                                <p:calendar value="#{beanReport.fecha_fin}" label="Fecha de Fin" pattern="dd/MM/yyyy"  locale="co" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+
+                        <p:commandButton actionListener="#{beanReport.consultaMeses()}" value="Generar" oncomplete="limpiarForm()" update="meses"/>
+                    </div>
+                    <div  align="center" style="width: 480px;" >
+                        <h:panelGrid>
+                            <p:dataTable value="#{beanReport.meses}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Año"/>
+                                    </f:facet>
+                                    <p:outputLabel value="#{item.año}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Mes"/>
+                                    </f:facet>
+                                    <p:outputLabel value="#{item.mes}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Cantidad de Envios"/>
+                                    </f:facet>
+                                    <p:outputLabel value="#{item.cantidad}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                        </h:panelGrid>
+                    </div>
+                </div>
+                <p:growl id="acceptedMessage" autoUpdate="true" life="6000"></p:growl>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
