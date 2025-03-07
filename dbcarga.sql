@@ -118,8 +118,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `id_tipoidentificacion`, `identificacion`, `nombre`, `telefono`, `id_ciudad`, `direccion`, `id_login`) VALUES
-(1, 1, '1143370194', 'pedro manjarrez', '3005116563', 1, 'Calle 31a', 1),
-(2, 1, '123123123', 'Pedro David Manjarrez Serrano', '3005116563', 1, 'Barrio 13 de junio #64b11 - Calle31a', 2);
+(1, 1, '1143370194', 'pedro manjarrez', '3205116563', 1, 'Calle 31a', 1),
+(2, 1, '123123123', 'Pedro David Manjarrez Serrano', '3205116563', 1, 'Barrio 13 de junio #64b11 - Calle31a', 2);
 
 -- --------------------------------------------------------
 
